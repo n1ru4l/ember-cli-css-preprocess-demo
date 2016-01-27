@@ -4,7 +4,19 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
-    // Add options here
+    styleProcessorOptions: {
+    extension: 'scss',
+    processors: [{
+      type: 'postcss',
+      parser: require('postcss-scss'),
+      plugins: [
+        {
+          module: require('precss'),
+          options: {},
+        }
+      ],
+    }],
+  },
   });
 
   // Use `app.import` to add additional libraries to the generated
